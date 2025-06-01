@@ -40,10 +40,10 @@ ARG API_VERSION=26
 ARG SDK_VERSION=9477386_latest
 ARG NDK_VERSION=r22
 
-ENV ANDROID_SDK_VERSION ${SDK_VERSION}
-ENV ANDROID_SDK_HOME /opt/android-sdk
-ENV ANDROID_SDK_FILENAME commandlinetools-linux-${ANDROID_SDK_VERSION}
-ENV ANDROID_SDK_URL https://dl.google.com/android/repository/${ANDROID_SDK_FILENAME}.zip
+ENV ANDROID_SDK_VERSION=${SDK_VERSION}
+ENV ANDROID_SDK_HOME=/opt/android-sdk
+ENV ANDROID_SDK_FILENAME=commandlinetools-linux-${ANDROID_SDK_VERSION}
+ENV ANDROID_SDK_URL=https://dl.google.com/android/repository/${ANDROID_SDK_FILENAME}.zip
 
 RUN wget --no-check-certificate -q ${ANDROID_SDK_URL} && \
     mkdir -p ${ANDROID_SDK_HOME} && \
@@ -55,10 +55,10 @@ ENV PATH=${PATH}:${ANDROID_SDK_HOME}/cmdline-tools/bin
 RUN yes | sdkmanager --sdk_root=${ANDROID_SDK_HOME} --licenses > /dev/null
 RUN    yes | sdkmanager --sdk_root=${ANDROID_SDK_HOME} "platforms;android-${API_VERSION}" > /dev/null
 
-ENV ANDROID_NDK_VERSION ${NDK_VERSION}
-ENV ANDROID_NDK_HOME /opt/android-ndk
-ENV ANDROID_NDK_FILENAME android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64
-ENV ANDROID_NDK_URL https://dl.google.com/android/repository/${ANDROID_NDK_FILENAME}.zip
+ENV ANDROID_NDK_VERSION=${NDK_VERSION}
+ENV ANDROID_NDK_HOME=/opt/android-ndk
+ENV ANDROID_NDK_FILENAME=android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64
+ENV ANDROID_NDK_URL=https://dl.google.com/android/repository/${ANDROID_NDK_FILENAME}.zip
 
 RUN wget --no-check-certificate -q ${ANDROID_NDK_URL} && \
     mkdir -p ${ANDROID_NDK_HOME} && \
