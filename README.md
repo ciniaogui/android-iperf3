@@ -4,6 +4,8 @@
 
 This repository is practically a copy of the [KnightWhoSayNi/android-iperf/](https://github.com/KnightWhoSayNi/android-iperf/) repository for iperf3 (but **not** iperf2), to continue building iperf3 for Android.  Note that this repository starts with iperf3 version 3.14, while the old repository stopped at version 3.10.1.
 
+For ready-to-use Android iperf3 application with GUI, see [Google Play](https://play.google.com/store/search?q=iperf3&c=apps).  For instructions on how to build and compile such application, including open source reference implementation, see CellularLab [Compiling iPerf3 in Android with CMake & JNI — A Practical Guide](https://medium.com/@abhishekbhardwajca/%EF%B8%8F-compiling-iperf3-in-android-with-cmake-jni-a-practical-guide-70721e198dc9).
+
 ## Getting Started
 
 **What is iPerf3** ?
