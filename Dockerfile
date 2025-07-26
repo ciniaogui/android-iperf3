@@ -148,6 +148,20 @@ COPY /iperf-3.19/* /tmp/iperf-3.19/
 RUN cd /tmp/iperf-3.19 && \
     ./configure
 
+############################################################################################
+# iPerf 3.19.1
+############################################################################################
+
+RUN cd /tmp && \
+    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.19.1.tar.gz && \
+    tar -zxvf iperf-3.19.1.tar.gz && \
+    rm -f iperf-3.19.1.tar.gz
+
+COPY /iperf-3.19.1/* /tmp/iperf-3.19.1/
+
+RUN cd /tmp/iperf-3.19.1 && \
+    ./configure
+
 ##############
 # Compile
 ##############
