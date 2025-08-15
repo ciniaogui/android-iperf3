@@ -38,7 +38,7 @@ RUN    rm -rf /var/lib/apt/lists/*
 
 ARG API_VERSION=26
 ARG SDK_VERSION=9477386_latest
-ARG NDK_VERSION=r22
+ARG NDK_VERSION=r28c
 
 ENV ANDROID_SDK_VERSION=${SDK_VERSION}
 ENV ANDROID_SDK_HOME=/opt/android-sdk
@@ -57,14 +57,15 @@ RUN    yes | sdkmanager --sdk_root=${ANDROID_SDK_HOME} "platforms;android-${API_
 
 ENV ANDROID_NDK_VERSION=${NDK_VERSION}
 ENV ANDROID_NDK_HOME=/opt/android-ndk
-ENV ANDROID_NDK_FILENAME=android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64
+#ENV ANDROID_NDK_FILENAME=android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64
+ENV ANDROID_NDK_FILENAME=android-ndk-${ANDROID_NDK_VERSION}-linux
 ENV ANDROID_NDK_URL=https://dl.google.com/android/repository/${ANDROID_NDK_FILENAME}.zip
 
-RUN wget --no-check-certificate -q ${ANDROID_NDK_URL} && \
-    mkdir -p ${ANDROID_NDK_HOME} && \
-    unzip -q ${ANDROID_NDK_FILENAME}.zip && \
-    mv ./android-ndk-${ANDROID_NDK_VERSION}/* ${ANDROID_NDK_HOME} && \
-    rm -f ${ANDROID_NDK_FILENAME}.zip
+RUN wget --no-check-certificate -q ${ANDROID_NDK_URL}
+RUN mkdir -p ${ANDROID_NDK_HOME}
+RUN unzip -q ${ANDROID_NDK_FILENAME}.zip
+RUN mv ./android-ndk-${ANDROID_NDK_VERSION}/* ${ANDROID_NDK_HOME}
+RUN rm -f ${ANDROID_NDK_FILENAME}.zip
 
 ENV PATH=${PATH}:${ANDROID_NDK_HOME}
 

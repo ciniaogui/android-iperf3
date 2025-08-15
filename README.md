@@ -26,11 +26,11 @@ For more informatiion, see [https://github.com/esnet/iperf](https://github.com/e
 | `3.17.1`        | 2024-05-13 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.17.1.tar.gz)  |
 | `3.18`          | 2024-05-13 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.18.tar.gz)  |
 | `3.19`          | 2025-06-01 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.19.tar.gz)  |
-| `3.19.1`        | 2025-07-26 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.19.1.tar.gz)  |
+| `3.19.1`        | 2025-08-15 | [Source Code](https://downloads.es.net/pub/iperf/iperf-3.19.1.tar.gz)  |
 
 ### Download
 
-Compiled `iperf3` binaries using SDK `9477386_latest` and NDK `r22` for devices with Android `9.0+` (API level `28+`).
+Compiled `iperf3` binaries using SDK `9477386_latest` and NDK `r28c`(or higher) for devices with Android `9.0+` (API level `28+`).
 
 | ABI        | Binaries           |
 | ------------- |:-------------:|
