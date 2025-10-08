@@ -32,6 +32,8 @@ For more informatiion, see [https://github.com/esnet/iperf](https://github.com/e
 
 Compiled `iperf3` binaries using SDK `9477386_latest` and NDK `r28c`(or higher) for devices with Android `9.0+` (API level `28+`).
 
+Note: per [this comment](https://github.com/davidBar-On/android-iperf3/issues/3#issuecomment-3377666615), it is preferred to download the binaries using the GitHub download feature and not `wget`.
+
 | ABI        | Binaries           |
 | ------------- |:-------------:|
 | arm64-v8a     | [here](https://github.com/davidBar-On/android-iperf3/tree/gh-pages/libs/arm64-v8a) |
