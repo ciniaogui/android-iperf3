@@ -1,0 +1,43 @@
+name: Build iperf3 AAR
+
+on:
+  workflow_dispatch:          # 手动触发
+  push:
+    branches: [ main ]        # 推送即触发（可选）
+
+jobs:
+  build-aar:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 拉源码
+      - uses: actions/checkout@v4
+
+      # 2. 装 NDK + CMake
+      - name: Setup Android SDK & NDK
+        uses: android-actions/setup-android@v3
+      - run: sdkmanager "ndk;25.2.9519653" "cmake;3.22.1"
+
+      # 3. 编译 libiperf3.so（四 ABI 循环）
+      - name: Build native shared library
+        run: |
+          $ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+            -DANDROID_PLATFORM=android-21 \
+            -DANDROID_ABI=arm64-v8a \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=ON \
+            -S . -B build/arm64-v8a
+          cmake --build build/arm64-v8a --target iperf3-shared
+          # 同理可再编 armeabi-v7a / x86 / x86_64，这里简写
+
+      # 4. 把 so 塞进 Android Library 模块并生成 AAR
+      - name: Assemble AAR
+        run: |
+          mkdir -p android-iperf3/src/main/jniLibs/arm64-v8a
+          cp build/arm64-v8a/libiperf3.so android-iperf3/src/main/jniLibs/arm64-v8a/
+          ./gradlew :android-iperf3:assembleRelease
+
+      # 5. 上传产物
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iperf3-aar
+          path: android-iperf3/build/outputs/aar/*.aar
